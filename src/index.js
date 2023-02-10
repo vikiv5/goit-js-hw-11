@@ -52,7 +52,9 @@ import LoadMoreBtn from './loadMoreBtn' ;
         }
 else {
     createMarkup (newSearch.data)
-    loadMoreBtn.enable();}
+    loadMoreBtn.enable();
+Notiflix.Notify( "Hooray! We found totalHits images ")
+}
 }
 
     catch (err) {
@@ -63,20 +65,18 @@ else {
     }
  }
 
- function onError (err) {
-    clearImgList()
-Notiflix.Notify.failure ("Sorry, there are no images matching your search query. Please try again.")
- }
+ 
 
 function createMarkup({hits}){
-    const markup=hits.map (({webformatURL,
+
+    const markup = hits.map (({webformatURL,
         largeImageURL,
         tags,
         likes,
         views,
-        comments,
-        downloads}) => 
- ` <div class="photo-card">
+       comments,
+        downloads}) =>
+ `<div class="photo-card">
 
  <img src="${webformatURL}" alt="${tags}" loading="lazy" />
   <div class="info">
@@ -99,7 +99,10 @@ galleryImg.insertAdjacentHTML("beforeend", markup)
 gallery.refresh()
 } 
 
-
+function onError (err) {
+    clearImgList()
+Notiflix.Notify.failure ("Sorry, there are no images matching your search query. Please try again.")
+ }
 
 function clearImgList(){
     galleryImg.innerHTML = "";
