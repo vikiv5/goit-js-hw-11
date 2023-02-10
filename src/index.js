@@ -41,7 +41,7 @@ import LoadMoreBtn from './loadMoreBtn' ;
     try {
         const newSearch = await searchImages.fetchImages()
 
-        if (newSearch.data.hits.length=== 0 ) {
+        if (newSearch.data.hits.length === 0 ) {
             Notiflix.Notify.failure ("Sorry, there are no images matching your search query. Please try again.")
             loadMoreBtn.hide();
         }
@@ -69,7 +69,7 @@ Notiflix.Notify( "Hooray! We found totalHits images ")
 
 function createMarkup({hits}){
 
-    const markup = hits.map (({webformatURL,
+    const markup = hits.map(({webformatURL,
         largeImageURL,
         tags,
         likes,
