@@ -16,7 +16,7 @@ async  fetchImages () {
     const response = await axios.get(`${API_URL}?key=${KEY_URL}&q=${this.searchQuery}&image_type=photo&orientation=horizontal&safesearch=true&per_page=40&page=${this.queryPage}`
 );
 this.incrementPage()
-return response.data.hits;
+return response.data.hits ;
 
 }
 

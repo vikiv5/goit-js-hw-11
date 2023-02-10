@@ -37,25 +37,27 @@ import LoadMoreBtn from './loadMoreBtn' ;
  }
 
  async function onLoadBtnClick() {
-    loadMoreBtn.disable();
-    try {
-        const newSearch = await searchImages.fetchImages()
+  loadMoreBtn.disable();
+try {
+const newSearch = await searchImages.fetchImages()
 
-        if (newSearch.data.hits.length === 0 ) {
-            Notiflix.Notify.failure ("Sorry, there are no images matching your search query. Please try again.")
-            loadMoreBtn.hide();
-        }
-        else if  (newSearch.data.hits.length < 40 ) {
-            createMarkup(newSearch.data);
-            Notiflix.Notify.failure ("We're sorry, but you've reached the end of search results.")
-            loadMoreBtn.hide();
-        }
-else {
-    createMarkup (newSearch.data)
-    loadMoreBtn.enable();
-Notiflix.Notify( "Hooray! We found totalHits images ")
+if (newSearch.data.hits.length === 0) {
+  Notiflix.Notify.failure("Sorry, there are no images matching your search query. Please try again.")
+  loadMoreBtn.hide();
 }
+
+else if (newSearch.data.hits.length  < 40) {
+  createMarkup(newSearch.data);
+  loadMoreBtn.hide();
+  Notiflix.Notify.failure("We're sorry, but you've reached the end of search results.")
 }
+ else {
+  createMarkup(newSearch.data)
+  loadMoreBtn.enable();
+ }
+
+}
+
 
     catch (err) {
         onError(err)
@@ -100,6 +102,7 @@ gallery.refresh()
 } 
 
 function onError (err) {
+  console.log (err)
     clearImgList()
 Notiflix.Notify.failure ("Sorry, there are no images matching your search query. Please try again.")
  }
