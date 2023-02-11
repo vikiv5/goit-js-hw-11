@@ -1,9 +1,10 @@
 
 import Notiflix from 'notiflix';
+//import simpleLightbox from 'simplelightbox';
 
-//import SimpleLightbox from "simplelightbox";
+import SimpleLightbox from "simplelightbox";
 // Додатковий імпорт стилів
-//import "simplelightbox/dist/simple-lightbox.min.css";
+import "simplelightbox/dist/simple-lightbox.min.css";
 
 import SearchImages from './Api';
 import LoadMoreBtn from './loadMoreBtn' ; 
@@ -41,18 +42,18 @@ import LoadMoreBtn from './loadMoreBtn' ;
 try {
 const newSearch = await searchImages.fetchImages()
 
-if (newSearch.data.hits.length === 0) {
+if (newSearch.length === 0) {
   Notiflix.Notify.failure("Sorry, there are no images matching your search query. Please try again.")
   loadMoreBtn.hide();
 }
 
-else if (newSearch.data.hits.length  < 40) {
+else if (newSearch.length  < 40) {
   createMarkup(newSearch.data);
   loadMoreBtn.hide();
   Notiflix.Notify.failure("We're sorry, but you've reached the end of search results.")
 }
  else {
-  createMarkup(newSearch.data)
+  createMarkup(newSearch)
   loadMoreBtn.enable();
  }
 
@@ -61,6 +62,7 @@ else if (newSearch.data.hits.length  < 40) {
 
     catch (err) {
         onError(err)
+        console.log(err)
     }
     finally{
         form.reset()
@@ -69,40 +71,41 @@ else if (newSearch.data.hits.length  < 40) {
 
  
 
-function createMarkup({hits}){
+function createMarkup(hits){
 
-    const markup = hits.map(({webformatURL,
-        largeImageURL,
-        tags,
-        likes,
-        views,
-       comments,
-        downloads}) =>
+    const markup = hits.map(hit =>
+      //({webformatURL,
+        //largeImageURL,
+        //tags,
+        //likes,
+        //views,
+       //comments,
+       // downloads}) =>
  `<div class="photo-card">
-
- <img src="${webformatURL}" alt="${tags}" loading="lazy" />
+ <a class = "gallery-item" href = "${hit.largeImageURL}">
+ <img src="${hit.webformatURL}" alt="${hit.tags}" loading="lazy" />
   <div class="info">
     <p class="info-item">
-      <b>${likes}</b>
+      <b>Likes <br>${hit.likes}</b>
     </p>
     <p class="info-item">
-      <b>${views}</b>
+      <b> Views <br>${hit.views}</b>
     </p>
     <p class="info-item">
-      <b>${comments}</b>
+      <b>Comments <br>${hit.comments}</b>
     </p>
     <p class="info-item">
-      <b>${downloads}</b>
+      <b>Downloads<br>${hit.downloads}</b>
     </p>
   </div>
 </div> `) 
 .join("");
 galleryImg.insertAdjacentHTML("beforeend", markup)
-gallery.refresh()
+//gallery.refresh()
 } 
 
 function onError (err) {
-  console.log (err)
+  console.log(err);
     clearImgList()
 Notiflix.Notify.failure ("Sorry, there are no images matching your search query. Please try again.")
  }
@@ -110,3 +113,8 @@ Notiflix.Notify.failure ("Sorry, there are no images matching your search query.
 function clearImgList(){
     galleryImg.innerHTML = "";
 }
+
+const gallery = new SimpleLightbox (".gallery a ",
+{captions:true,
+captionsData: "alt",
+captionDelay:250 ,})

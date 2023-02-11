@@ -1,5 +1,6 @@
 body {
     font-family: sans-serif;
+    color: black;
   }
   button {
     margin: 0 auto;
@@ -15,6 +16,8 @@ body {
   }
   input,
   button {
+    outline: none;
+    border: 1 px transparent;
     border-radius: 15px;
     padding: 10px 20px;
     font-size: 30px;
@@ -39,9 +42,12 @@ body {
     }
     
     .photo-card {
-        overflow: hidden;
-        width: calc((100% - 120px) / 4);
-        margin: 0;
+    width: 30%;
+    text-align: center;
+    border-radius: 15px;
+    background-color: #c1c1c1;
+    padding: 20px;
+  
     }
     
     .photo-card img {
@@ -52,45 +58,10 @@ body {
     
     .info {
         display: flex;
+        gap: 20px;
         justify-content: center;
         align-items: center;
-        
         font-size: 12px;
     }
-    
-    .info-item {
-        margin-left: 10px;
-        margin-right:10px;
-    }
-  
- /* #articlesWrapper {
-    margin-top: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-  
-  .article-card {
-    width: 30%;
-    text-align: center;
-    border-radius: 15px;
-    background-color: #c1c1c1;
-    padding: 20px;
-  }
-  
-  .article-img {
-    width: 100%;
-    border-radius: 15px;
-  }
-  
-  .article-link {
-    text-transform: uppercase;
-    border-radius: 15px;
-    display: inline-block;
-    text-decoration: none;
-    background-color: rgba(45, 45, 233, 0.731);
-    color: white;
-    padding: 10px 20px;
-  }*/
+   
+ 
