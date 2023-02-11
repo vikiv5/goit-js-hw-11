@@ -6,6 +6,11 @@ body {
     margin: 0 auto;
     margin-top: 50px;
     display: block;
+    cursor: pointer;
+    border: none;
+    border: 1px solid rgb(221, 206, 206);
+    background-color: antiquewhite;
+    transition: background-color 250 ms cubic-bezier(0.4, 0, 0.2, 1);
   }
   button:disabled {
     background-color: #c1c1c1;
@@ -14,15 +19,18 @@ body {
   button.hidden {
     display: none;
   }
-  input,
-  button {
+  input, button
+   {
     outline: none;
-    border: 1 px transparent;
-    border-radius: 15px;
+    border-radius: 10px;
     padding: 10px 20px;
-    font-size: 30px;
-  }
- 
+    font-size: 30px ;}
+  
+ .input {
+  outline: none;
+  background-color:beige;
+  border: 2px solid rgb(235, 225, 245);
+ }
   .container {
     display: flex;
     align-items: center;
@@ -40,9 +48,7 @@ body {
         flex-wrap: wrap;
         gap: 15px;
     }
-    
     .photo-card {
-    width: 30%;
     text-align: center;
     border-radius: 15px;
     background-color: #c1c1c1;
@@ -61,7 +67,14 @@ body {
         gap: 20px;
         justify-content: center;
         align-items: center;
-        font-size: 12px;
+        font-size: 14px;
+        font-family: inherit;
+        font-weight: 400;
+
+    }
+    .info-item{
+      margin-right: 5px;
+      margin-left: 5px;
     }
    
  
